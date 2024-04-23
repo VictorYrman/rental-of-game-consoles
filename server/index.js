@@ -1,23 +1,25 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import authRoute from "./routes/auth.js";
+import cookieParser from "cookie-parser";
+import userRoute from "./routes/userRouter.js";
+import connectDb from "./config/db.js";
 
 const app = express();
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9999;
 const dbRef = process.env.DB_REF;
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
-app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
 
 const start = async () => {
   try {
-    await mongoose.connect(dbRef);
+    connectDb(dbRef);
 
     app.listen(PORT, () => {
       console.log(`Server started on port ${PORT}`);

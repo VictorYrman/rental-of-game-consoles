@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 
 const profileSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   firstName: { type: String },
   secondName: { type: String },
   sex: { type: String },
-  phoneNumber: { type: String },
-  birthDate: { type: Object },
+  email: { type: string },
+  birthDate: { type: mongoose.Schema.Types.Date },
+  address: { type: String },
   avatar: { type: String },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 export default mongoose.model("Profile", profileSchema);

@@ -1,0 +1,24 @@
+.header {
+  height: 100px;
+
+  &__container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__navbar {
+    display: flex;
+    align-items: center;
+
+    .header__menu__item {
+      padding: 0 0 0 50px;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 25px;
+  }
+}
