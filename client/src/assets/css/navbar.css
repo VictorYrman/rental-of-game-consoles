@@ -7,11 +7,11 @@
   justify-content: space-between;
   align-items: center;
 }
-.header__navbar {
+.header__container .header__navbar {
   display: flex;
   align-items: center;
 }
-.header__navbar .header__menu__item {
+.header__container .header__navbar .header__menu__item {
   padding: 0 0 0 50px;
 }
 .header__buttons {

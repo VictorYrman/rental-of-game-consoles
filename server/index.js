@@ -22,7 +22,7 @@ const start = async () => {
     connectDb(dbRef);
 
     app.listen(PORT, () => {
-      console.log(`Server started on port ${PORT}`);
+      console.log(`Сервер работает на порту ${PORT}`);
     });
   } catch (error) {
     console.log(error);

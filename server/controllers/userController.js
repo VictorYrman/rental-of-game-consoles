@@ -9,15 +9,17 @@ export const register = async (request, response) => {
     const isNameBusy = await User.findOne({ userName });
     const isEmailBusy = await User.findOne({ email });
 
-    if (isNameBusy || isEmailBusy)
+    if (isNameBusy || isEmailBusy) {
       return response
         .status(400)
         .json({ message: "Пользователь с такими данными уже существует." });
+    }
 
-    if (password.length < 6)
+    if (password.length < 6) {
       return response
         .status(400)
         .json({ message: "Пароль должен быть не менее 6 символов." });
+    }
 
     const hashPassword = await bcrypt.hash(password, 10);
 
@@ -48,16 +50,18 @@ export const refreshToken = (request, response) => {
   try {
     const rf_token = request.cookies.refreshToken;
 
-    if (!rf_token)
+    if (!rf_token) {
       return response.status(400).json({
         message: "Пожалуйста войдите в аккаунт или зарегистрируйтесь.",
       });
+    }
 
     jwt.verify(rf_token, process.env.REFRESH_TOKEN_KEY, (error, user) => {
-      if (error)
+      if (error) {
         return response.status(400).json({
           message: "Пожалуйста войдите в аккаунт или зарегистрируйтесь.",
         });
+      }
 
       const accessToken = createAccessToken({ id: user.id });
 
@@ -75,14 +79,16 @@ export const login = async (request, response) => {
     const { email, password } = request.body;
 
     const user = await User.findOne({ email });
-    if (!user)
+    if (!user) {
       return response
         .status(400)
         .json({ message: "Пользователь не существует." });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
+    if (!isMatch) {
       return response.status(400).json({ message: "Неправильный пароль." });
+    }
 
     const accessToken = createAccessToken({ id: user._id });
     const refreshToken = createRefreshToken({ id: user._id });
@@ -112,10 +118,11 @@ export const logout = async (request, response) => {
 export const getUser = async (request, response) => {
   try {
     const user = await User.findById(request.user.id).select("-password");
-    if (!user)
+    if (!user) {
       return response
         .status(400)
         .json({ message: "Пользователь не существует." });
+    }
 
     response.json(user);
   } catch (error) {

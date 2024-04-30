@@ -6,14 +6,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
 
-  &__navbar {
-    display: flex;
-    align-items: center;
+    .header__navbar {
+      display: flex;
+      align-items: center;
 
-    .header__menu__item {
-      padding: 0 0 0 50px;
+      .header__menu__item {
+        padding: 0 0 0 50px;
+      }
     }
   }
 

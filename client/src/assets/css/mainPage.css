@@ -7,19 +7,18 @@
   background: url("../images/background-image (original).jpg");
   background-size: cover;
   background-position: center;
-  box-shadow: inset 70px 30px 30px hsl(241, 100%, 10%), inset -70px -30px 30px hsl(241, 100%, 10%);
+  box-shadow: inset 10px 30px 30px hsl(241, 100%, 10%), inset -10px -30px 30px hsl(241, 100%, 10%);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .hero__container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 0.8fr;
   height: calc(100vh - 500px);
   align-content: center;
 }
 .hero__container .hero__buttons {
-  justify-self: end;
   margin: 20px 0 0 0;
   display: flex;
   gap: 25px;
@@ -53,7 +52,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  border: 1px solid #ffffff;
+  border: 1px solid hsl(0, 0%, 100%);
   border-radius: 20px;
   padding: 20px 30px 30px;
 }

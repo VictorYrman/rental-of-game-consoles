@@ -1,31 +1,41 @@
-import React from "react";
-import "../css/mainPage.css";
-import { NavLink } from "react-router-dom";
-import Robot from "../images/robot.svg";
-import Quote from "../images/Quote.svg";
-import Unknown from "../images/unknown.png";
+//Modules
+import { Link } from "react-router-dom";
+
+//Utils
+import { Navbar } from "../header/Navbar";
+import { Footer } from "../footer/Footer";
+import Robot from "../../assets/images/robot.svg";
+import Quote from "../../assets/images/Quote.svg";
+import Unknown from "../../assets/images/unknown.png";
 
 export const MainPage = () => {
   return (
-    <div>
+    <>
+      <Navbar />
       <section className="hero">
         <div className="hero__background--image">
           <img src={Robot} alt="Робот" />
         </div>
         <div className="container hero__container">
           <h1 className="hero__heading text--veryLarge text--semibold">
-            Аренда <div className="text--pink">игровых консолей</div>
+            Арендуй <span className="text--purple">приставки</span> и
+            зарабатывай <span className="text--purple">деньги</span>
           </h1>
           <div>
-            <p className="text--medium">
-              Испытайте бурю эмоций от игр с нашим широким выбором консолей.
+            <p className="text--medium text--normal">
+              Получи удовольствие от игр благодаря широкому выбору консолей,
+              которые можно взять напрокат.
             </p>
             <div className="hero__buttons">
-              <button className="button button--pink text--normal text--semibold">
-                <NavLink>Аренда</NavLink>
+              <button className="button button--pink">
+                <Link to={"/catalog"} className="text--normal text--bold">
+                  Аренда
+                </Link>
               </button>
-              <button className="button button--transparent text--normal text--semibold">
-                <NavLink>Узнать больше</NavLink>
+              <button className="button button--transparent">
+                <Link to={"/about"} className="text--normal text--bold">
+                  Узнать больше
+                </Link>
               </button>
             </div>
           </div>
@@ -36,7 +46,7 @@ export const MainPage = () => {
           <div className="review-1">
             <div className="reviewer">
               <img src={Unknown} alt="Unknown" className="reviewer__avatar" />
-              <p className="reviewer__name text--big text--bold text-pink">
+              <p className="reviewer__name text--big text--bold text--purple">
                 Person 1
               </p>
             </div>
@@ -54,7 +64,7 @@ export const MainPage = () => {
           <div className="review-2">
             <div className="reviewer">
               <img src={Unknown} alt="Unknown" className="reviewer__avatar" />
-              <p className="reviewer__name text--big text--bold text-pink">
+              <p className="reviewer__name text--big text--bold text--purple">
                 Person 2
               </p>
             </div>
@@ -72,7 +82,7 @@ export const MainPage = () => {
           <div className="review-3">
             <div className="reviewer">
               <img src={Unknown} alt="Unknown" className="reviewer__avatar" />
-              <p className="reviewer__name text--big text--bold text-pink">
+              <p className="reviewer__name text--big text--bold text--purple">
                 Person 3
               </p>
             </div>
@@ -89,6 +99,7 @@ export const MainPage = () => {
           </div>
         </div>
       </section>
-    </div>
+      <Footer />
+    </>
   );
 };
