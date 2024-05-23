@@ -1,19 +1,16 @@
-//Modules
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, {useState, useContext} from "react";
+import {GlobalState} from '../../GlobalState'
 
-//Utils
-import "../../assets/css/navbar.css";
-import Logo from "../../assets/images/Logo (original).svg";
-import { Modal } from "./Modal";
+import {Link, NavLink} from "react-router-dom";
 
-export const Navbar = () => {
-  const [modalActive, setModalActive] = useState(false);
-  const [button, setButton] = useState("");
+import "./header.css"
+import Logo from "./icon/Logo (original).svg"
 
-  return (
-    <>
-      <header className="header">
+
+function Header() {
+    const value = useContext(GlobalState)
+    return (
+        <header className="header">
         <div className="container header__container">
           <nav className="header__navbar">
             <NavLink to={"/"}>
@@ -45,28 +42,25 @@ export const Navbar = () => {
           <div className="header__buttons">
             <button
               className="button button--transparent text--big text--bold"
-              onClick={() => {
-                setModalActive(true);
-                setButton("Login");
-              }}
               id="login"
             >
+            <NavLink to={"/login"}>
               Войти
+            </NavLink>
             </button>
+
             <button
               className="button button--pink text--big text--bold"
-              onClick={() => {
-                setModalActive(true);
-                setButton("Register");
-              }}
               id="register"
             >
+                <NavLink to={"/register"}>
               Регистрация
+                </NavLink>
             </button>
           </div>
         </div>
       </header>
-      <Modal active={modalActive} setActive={setModalActive} button={button} />
-    </>
-  );
-};
+    )
+}
+
+export default Header

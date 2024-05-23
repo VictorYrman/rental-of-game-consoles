@@ -40,6 +40,5 @@
   },
   "devDependencies": {
     "gulp-sass": "^5.1.0"
-  },
-  "proxy": "http://localhost:9999"
+  }
 }

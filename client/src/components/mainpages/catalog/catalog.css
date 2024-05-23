@@ -1,0 +1,76 @@
+* {
+    color: rgb(255, 255, 255);
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    
+}
+
+.catalog-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    grid-auto-rows: 300px;
+}
+
+.catalog-wrapper > div {
+    background-color: rgb(140, 69, 187);
+    font-size: 20px;
+}
+
+.upper-buttons > select > option {
+    color: black;
+}
+
+.upper-buttons > select {
+    background-color: #0B003C;
+    border: solid 1px white;
+    border-radius: 4px;
+    height: 30px;
+    margin: 3px;
+}
+
+.bottom-buttons > button {
+    background-color: #201260;
+    border: none;
+    height: 30px;
+    margin: 3px;
+}
+
+.search-bar {
+    width: 500px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    background-color: #23194f;
+}
+
+.page-navigation > button {
+    background-color: #0B003C;
+    border:none;
+    font-size: 50px;
+    margin: 20px;
+}
+
+.rent-btn {
+    height: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: solid;
+    background-color: #0B003C;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+.more-btn {
+height: 20px;
+padding-left: 30px;
+padding-right: 30px;
+border-style: solid;
+background: linear-gradient(to bottom right ,#ff00d6, #bd00ff);
+border-color: #97007F;
+border-radius: 4px;
+border-width: 1px;
+}
