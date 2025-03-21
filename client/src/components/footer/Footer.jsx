@@ -17,32 +17,30 @@ export const Footer = () => {
             <p className="text--normal text--bold">Контакты:</p>
             <div className="footer__contact">
               <p className="footer__email text--normal text--medium">
-                vitiayrashevich1256@gmail.com
+                {/* YOUR_EMAIL */}
               </p>
               <p className="footer__phone text--normal text--medium">
-                +375 (33) 254-23-23
+                {/* YOUR_PHONE_NUMBER */}
               </p>
               <div className="social--networks">
-                <Link to={"https://www.instagram.com/_yrman_/"} target="_blank">
+                {/* YOUR_INSTAGRAM */}
+                <Link target="_blank">
                   <img
                     src={Instagram}
                     alt="Instagram"
                     className="footer__icon"
                   />
                 </Link>
-                <Link to={"https://tlgg.ru/theyrman"} target="_blank">
+                {/* YOUR_TELEGRAM */}
+                <Link target="_blank">
                   <img src={Telegram} alt="Telegram" className="footer__icon" />
                 </Link>
-                <Link
-                  to={"https://discord.com/users/994884455154057226"}
-                  target="_blank"
-                >
+                {/* YOUR_DISCORD */}
+                <Link target="_blank">
                   <img src={Discord} alt="Discord" className="footer__icon" />
                 </Link>
-                <Link
-                  to={"https://www.linkedin.com/in/vitya-yrman-a83508264/"}
-                  target="_blank"
-                >
+                {/* YOUR_LINKEDIN */}
+                <Link target="_blank">
                   <img src={Linkedin} alt="Linkedin" className="footer__icon" />
                 </Link>
               </div>
@@ -82,9 +80,7 @@ export const Footer = () => {
         </div>
         <div className="footer__line"></div>
         <div className="footer__link">
-          <p className="text--normal text--bold">
-            2024 yrman. Все права защищены.
-          </p>
+          <p className="text--normal text--bold">2024. Все права защищены.</p>
           <div className="footer__link--last">
             <Link className="text--normal text--bold text--underline">
               Политика конфиденциальности

@@ -20,10 +20,6 @@
 .auth__input {
   color: hsl(0, 0%, 100%);
   width: 320px;
-  padding: 8px 12px;
-  background: transparent;
-  border: 1px solid hsl(0, 0%, 100%);
-  border-radius: 4px;
 }
 .auth__row {
   display: flex;

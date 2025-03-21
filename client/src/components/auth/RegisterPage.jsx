@@ -4,9 +4,8 @@ import axios from "axios";
 
 //Utils
 import "../../assets/css/auth.css";
-import Crossing from "../../assets/images/crossing.svg";
 
-export const Register = () => {
+export const Register = ({ setActive, setButton }) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -24,12 +23,17 @@ export const Register = () => {
     try {
       await axios.post("http://localhost:9999/api/users/register", { ...user });
 
-      localStorage.setItem("firstRegister", true);
+      localStorage.setItem("firstLogin", true);
 
       window.location.href = "/";
     } catch (error) {
       alert(error.response.data.message);
     }
+  };
+
+  const switchToLogin = () => {
+    setActive(true);
+    setButton("Login");
   };
 
   return (
@@ -42,7 +46,7 @@ export const Register = () => {
             type="text"
             name="userName"
             id="userName"
-            className="auth__input text--normal"
+            className="input input--transparent auth__input text--normal"
             placeholder="Ваше имя"
             value={user.userName}
             onChange={onChangeInput}
@@ -51,7 +55,7 @@ export const Register = () => {
             type="email"
             name="email"
             id="email"
-            className="auth__input text--normal"
+            className="input input--transparent auth__input text--normal"
             placeholder="Адрес электронной почты"
             value={user.email}
             onChange={onChangeInput}
@@ -60,7 +64,7 @@ export const Register = () => {
             type="password"
             name="password"
             id="password"
-            className="auth__input text--normal"
+            className="input input--transparent auth__input text--normal"
             placeholder="Пароль"
             value={user.password}
             onChange={onChangeInput}
@@ -74,7 +78,9 @@ export const Register = () => {
           >
             Регистрация
           </button>
-          <a className="auth__link text--purple">Уже есть аккаунт</a>
+          <a className="auth__link text--purple" onClick={switchToLogin}>
+            Уже есть аккаунт
+          </a>
           <p className="auth__text text--small">
             Нажимая “Зарегистрироваться”, даю{" "}
             <span className="text--purple">согласие</span> на обработку

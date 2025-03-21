@@ -36,11 +36,10 @@ export const register = async (request, response) => {
 
     response.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      path: "/api/users/refresh_token",
+      path: "/user/refresh_token",
     });
 
     response.json({ accessToken });
-    //response.json({ message: "Регистрация прошла успешно." });
   } catch (error) {
     return response.status(500).json({ message: error.message });
   }
@@ -67,8 +66,6 @@ export const refreshToken = (request, response) => {
 
       response.json({ accessToken });
     });
-
-    //response.json({ rf_token });
   } catch (error) {
     return response.status(500).json({ message: error.message });
   }
@@ -79,6 +76,7 @@ export const login = async (request, response) => {
     const { email, password } = request.body;
 
     const user = await User.findOne({ email });
+
     if (!user) {
       return response
         .status(400)
@@ -95,12 +93,10 @@ export const login = async (request, response) => {
 
     response.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      path: "/api/users/refresh_token",
+      path: "/user/refresh_token",
     });
 
     response.json({ accessToken });
-
-    response.json({ message: "Вы вошли в систему." });
   } catch (error) {
     return response.status(500).json({ message: error.message });
   }
@@ -108,7 +104,7 @@ export const login = async (request, response) => {
 
 export const logout = async (request, response) => {
   try {
-    response.clearCookie("refreshToken", { path: "/api/users/refresh_token" });
+    response.clearCookie("refreshToken", { path: "/user/refresh_token" });
     return response.json({ message: "Вы вышли из аккаунта." });
   } catch (error) {
     return response.status(500).json({ message: error.message });
@@ -125,6 +121,36 @@ export const getUser = async (request, response) => {
     }
 
     response.json(user);
+  } catch (error) {
+    return response.status(500).json({ message: error.message });
+  }
+};
+
+export const getUsers = async (request, response) => {
+  try {
+    const users = await User.find();
+
+    response.json(users);
+  } catch (error) {
+    return response.status(500).json({ message: error.message });
+  }
+};
+
+export const deleteUser = async (request, response) => {
+  try {
+    await User.findByIdAndDelete(request.params.id);
+
+    response.json({ message: "Пользователь удалён." });
+  } catch (error) {
+    return response.status(500).json({ message: error.message });
+  }
+};
+
+export const updateUser = async (request, response) => {
+  try {
+    const { userName } = request.body;
+
+    await User.findByIdAndUpdate({ _id: request.params.id }, { userName });
   } catch (error) {
     return response.status(500).json({ message: error.message });
   }

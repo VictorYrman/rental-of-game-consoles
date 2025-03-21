@@ -1,15 +1,70 @@
 //Modules
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import axios from "axios";
 
 //Utils
 import "../../assets/css/navbar.css";
 import Logo from "../../assets/images/Logo (original).svg";
 import { Modal } from "./Modal";
+import { GlobalState } from "../../GlobalState";
 
 export const Navbar = () => {
+  const state = useContext(GlobalState);
   const [modalActive, setModalActive] = useState(false);
   const [button, setButton] = useState("");
+  const [isLogged] = state.userAPI.isLogged;
+  const [isAdmin] = state.userAPI.isAdmin;
+
+  const logoutUser = async () => {
+    await axios.get("http://localhost:9999/api/users/logout");
+
+    localStorage.removeItem("firstLogin");
+
+    window.location.href = "/";
+  };
+
+  const loggedRouter = () => {
+    return (
+      <button
+        className="button button--pink text--big text--bold"
+        id="exit"
+        onClick={logoutUser()}
+      >
+        Выход
+      </button>
+    );
+  };
+
+  const unLoggedRouter = () => {
+    return (
+      <>
+        {/* <button
+          className="button button--transparent text--big text--bold"
+          onClick={() => {
+            setModalActive(true);
+            setButton("Login");
+          }}
+          id="login"
+        >
+          Войти
+        </button> */}
+        <button className="button button--pink text--big text--bold">
+          <Link to={"/login"}>Логин</Link>
+        </button>
+        <button
+          className="button button--pink text--big text--bold"
+          onClick={() => {
+            setModalActive(true);
+            setButton("Register");
+          }}
+          id="register"
+        >
+          Регистрация
+        </button>
+      </>
+    );
+  };
 
   return (
     <>
@@ -43,30 +98,16 @@ export const Navbar = () => {
             </ul>
           </nav>
           <div className="header__buttons">
-            <button
-              className="button button--transparent text--big text--bold"
-              onClick={() => {
-                setModalActive(true);
-                setButton("Login");
-              }}
-              id="login"
-            >
-              Войти
-            </button>
-            <button
-              className="button button--pink text--big text--bold"
-              onClick={() => {
-                setModalActive(true);
-                setButton("Register");
-              }}
-              id="register"
-            >
-              Регистрация
-            </button>
+            {isLogged ? loggedRouter() : unLoggedRouter()}
           </div>
         </div>
       </header>
-      <Modal active={modalActive} setActive={setModalActive} button={button} />
+      <Modal
+        active={modalActive}
+        setActive={setModalActive}
+        button={button}
+        setButton={setButton}
+      />
     </>
   );
 };

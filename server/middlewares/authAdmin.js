@@ -1,12 +1,12 @@
-import User from "../models/User";
+import User from "../models/User.js";
 
-export const authAdmin = async (request, response, next) => {
+const authAdmin = async (request, response, next) => {
   try {
     const user = await User.findOne({
       _id: request.user.id,
     });
 
-    if (user.role === false)
+    if (user.isAdmin === false)
       return response
         .status(400)
         .json({ message: "В доступе к функциям админа отказано." });
@@ -16,3 +16,5 @@ export const authAdmin = async (request, response, next) => {
     return response.status(500).json({ message: error.message });
   }
 };
+
+export default authAdmin;

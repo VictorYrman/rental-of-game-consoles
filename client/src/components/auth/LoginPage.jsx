@@ -4,9 +4,8 @@ import axios from "axios";
 
 //Utils
 import "../../assets/css/auth.css";
-import Crossing from "../../assets/images/crossing.svg";
 
-export const Login = () => {
+export const Login = ({ setActive, setButton }) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -21,7 +20,7 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:9999/api/users/login", { ...user });
+      await axios.post("http://localhost:9999/user/login", { ...user });
 
       localStorage.setItem("firstLogin", true);
 
@@ -29,6 +28,11 @@ export const Login = () => {
     } catch (error) {
       alert(error.response.data.message);
     }
+  };
+
+  const switchToRegister = () => {
+    setActive(false);
+    setButton("Register");
   };
 
   return (
@@ -42,7 +46,7 @@ export const Login = () => {
             name="email"
             id="email"
             placeholder="Адрес электронной почты"
-            className="auth__input text--normal"
+            className="input input--transparent auth__input text--normal"
             value={user.email}
             onChange={onChangeInput}
           />
@@ -51,7 +55,7 @@ export const Login = () => {
             name="password"
             id="password"
             placeholder="Пароль"
-            className="auth__input text--normal"
+            className="input input--transparent auth__input text--normal"
             value={user.password}
             onChange={onChangeInput}
             autoComplete="on"
@@ -67,7 +71,11 @@ export const Login = () => {
           >
             Логин
           </button>
-          <button className="button button--transparent auth__button text--normal text--bold">
+          <button
+            type="button"
+            className="button button--transparent auth__button text--normal text--bold"
+            onClick={switchToRegister}
+          >
             Регистрация
           </button>
         </div>

@@ -40,10 +40,6 @@ $white-color: hsl(0, 0%, 100%);
   &__input {
     color: $white-color;
     width: 320px;
-    padding: 8px 12px;
-    background: transparent;
-    border: 1px solid $white-color;
-    border-radius: 4px;
   }
 
   &__row {
